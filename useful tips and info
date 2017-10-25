@@ -1,0 +1,106 @@
+//running the python code
+
+	python Desktop/topo_learner.py
+
+
+//check version of ovs and ryu
+
+$ ryu-manager --version
+   ryu-manager 4.16
+
+$ovs-ofctl -V
+  ovs-ofctl (Open vSwitch) 2.7.90
+
+//running the ryu manager and the miniet
+
+1. The Ryu controller gets instantiated using a script called ryu-manager. We next add this to the
+   python path variable, so that we don't need to give the complete path to invoke the controller at all times: 
+   
+	$ PYTHONPATH=..home/mamtha/Desktop/Thesis_Patrick/patrick/ryu-controller/ryu-4.10/bin/ryu-manager
+	
+   add the python file path which you want to execute -
+
+        $ PYTHONPATH=../home/mamtha/Desktop/Thesis_Patrick/patrick/ryu-controller/ryu-4.10/ryu/app/shortestpath.py
+
+2. OPen two terminals. in the first one - get the controller up and running.
+    
+      	$ ryu-manager --verbose ~/ryu/ryu/app/simple_switch.py
+
+  This starts the controller with a simple_switch script that pushes down rules to the switches to enable them as simple switches.
+  In case of your own NetApp (Ryu application), replace simple_switch.py with your own .py file, with its complete path.
+  In case you see an oslo.config error, try, as shown here:
+	 
+ 	$ sudo pip install oslo.config
+
+3. IN the second terminal - set up the Mininet topology, with a remote controller. An example could be the following:
+
+	Setup is as follows - 1 controller, 1 switch and 3 hosts on the switch. 
+         
+	controller---->switch---->host a
+	                    |---->host b 
+			    |---->host c
+ 
+	$ sudo mn --topo single,3 --mac --switch ovsk --controller remote
+
+4. Finally run the pingall command on the second terminal, to see if all hosts can reach every other host in the network.
+
+	mininet>pingall
+
+
+//again - different scenario
+
+I took the following step.
+
+1.  run mininet
+        $ sudo mn --topo single,2 --mac --switch ovsk --controller remote -x
+2. set OpenFlow version to s1
+      s1> ovs-vsctl set Bridge s1 protocols=OpenFlow13
+3. run application
+    c0> ryu-manager ryu/app/simple_switch_13.py ryu/app/ofctl_rest.py
+4. send ping
+     mininet> h1 ping h2
+5. get flow stats
+        c0> curl -X GET http://localhost:8080/stats/flow/1
+        (I got "OUTPUT:CONTROLLER", "OUTPUT:1", "OUTPUT:2")
+6. clear flows
+        c0> curl -X DELETE http://localhost:8080/stats/flowentry/clear/1
+7. send ping again
+     mininet> h1 ping h2
+            (the ping is not reachable at this time)
+8. get flow stats
+        c0> curl -X GET http://localhost:8080/stats/flow/1
+        (I got no flows)
+
+// things to do and imp info - 
+
+By default, Ryu will wait for the connection from switches on port 6653 and 6633, So most of the
+>     required configuration is on switch side, I guess.
+>     If you are using Open vSwitch, please execute the following command on your switches.
+>        $ ovs-vsctl set-controller <switch_name> "tcp:<controller1_addr>:6653"
+>     "tcp:<controller2_addr>:6653"
+> 
+>     Optionally, if you want to tell switches which controller is Master or Slave, send OFPRoleRequest
+>     message from your Ryu application.
+
+.............................................................................................................................
+// how to set a python path - 
+
+$ export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/dist-packages
+
+//check all the paths of python set
+$ python
+>>> import sys
+>>> print '\n'.join(sys.path)
+
+//paths added - 
+
+/usr/local/lib/python26.zip
+/usr/local/lib/python2.6
+/usr/local/lib/python2.6/plat-linux4
+/usr/local/lib/python2.6/lib-tk
+/usr/local/lib/python2.6/lib-old
+/usr/local/lib/python2.6/lib-dynload
+/usr/local/lib/python2.6/site-packages
+
+
+	

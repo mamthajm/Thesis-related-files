@@ -1,0 +1,184 @@
+sudo apt-get update error - 
+
+//changing time worked for me. system dte and time were set wrong. 
+
+https://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html#s-syncing-time
+
+https://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html
+
+https://serverfault.com/questions/7145/what-should-i-do-when-i-got-the-keyexpired-error-message-after-an-apt-get-update
+
+https://bbs.nextthing.co/t/solved-help-sudo-apt-get-update-failed-to-fetch-sources-on-4-4/13459/2
+
+Current default time zone: 'Etc/UTC'
+Local time is now:      Sun Oct 22 12:54:22 UTC 2017.
+Universal Time is now:  Sun Oct 22 12:54:22 UTC 2017.
+Run 'dpkg-reconfigure tzdata' if you wish to change it.
+
+
+
+.........................
+https://askubuntu.com/questions/334436/unable-to-locate-ntpd-package
+
+
+.................................
+
+Makefile.am in src folder and in main folder - differences. - check shrikanths documents , he has written the difference and in which file the changes have to be made while compliing the code. 
+
+..................................
+
+switch id and pwd - 
+
+id - root pwd - onl
+id - mamtha pwd - pass
+
+.......................................................
+
+MOST IMPORTANT - Switch is like debian or linux. so use the commands as u do in linux to work on the switch. 
+
+........................................................
+
+setting ip on a PC. 
+restart the network - fix errors issues by bringing the network up and down. 
+
+to restart a network on PC after setting the the new ip address.  
+
+$ sudo /etc/init.de/networking restart
+$ ifconfig - check if the new ip set is der or not.  if not bring down the network and bring it up again. and it would be done. below are the steps. 
+$ sudo ifdown etho
+$ sudo ifup etho
+
+..........................................
+To start the netconf server - *** dont forget it. 
+
+$ ofc -sever -v 3 -f // f represents to run it in foreground.
+
+
+If another instance of netconf server running then it wont execute. Hence, kill it and start the netconf server again. 
+
+1. $ ps -aux | grep ofc // displays all the instances of ofc processes. 
+2. $ kill -9 2112 //2112 is the process id or you can also delete the file "ofc.soc". Its in the path user/local..something
+
+
+To check instances of monitor-automata- 
+
+$ ps -eaf | grep monitor
+........................................................
+on switch - 
+
+$ ip addr show 
+$ ip -s link show interface-name
+...............................................
+
+on switch - if no disk space error - remove all the logs related to you. 
+
+$ rm -rf monitor-application.*
+......................................................
+
+copying from one place to another 
+
+from switch to switch -> 
+$ cp -R src destn (destination can just be "." - without quotes, it means current directoty.)
+
+from switch to local machine -> 
+$ scp src_path_from_pc username@host:/home/..  (username - root/mamtha, /home/.. is the destn path, host is the ip addres)
+
+...........................................
+
+find ip of a switch. Connect to a switch by three ways. 
+
+1. first connect to it via the console port. 
+2. login using $ /dev/ttyUSB0 115200
+3. it open a black screen. press enter. it asked for username and passwork. enter it. You can connected. :)
+   if this doesnt work and if you want to check if you are connected to the switch or not. then type - "dmesg -w | grep tty"  -> it gives all the instances. so now yoy now that you are connected. without quotes.
+
+4. then type ifconfig to get the ip. ma1 is its representation. check in that para. That is the ip. THis works only if you are the root else ifconfig  doesnt work. If you are connect to the switch as some other user then you have to type "/sbin/ifconfig". THis gives the ip. without quotes
+5. now using this IP, you can connect through SSH. i.e - $ ssh root@10.162.96.101 . root-username, 10.162.96.101 - ip of the switch. press enter
+6. now enter the password for it. "onl" or whatever your password is. Now you are connected. :)
+
+7. can be done through putty too. give the path. /dev/ttyUSB0. **select option serial among the four others just below it. enter the port speed - 115200.
+   You are now connected. :)
+
+....................................
+
+reboot the switch - instead of turning it off again. 
+
+$ sudo reboot 
+
+...............................
+
+to open the log file - always better to do it and so that it is accessible to see the whole. else only the current updates will be shown, you cant go up to check the previous messages. really annoying. Hence use the command - 
+
+$ tail -f /var/log/monitor-application.log
+
+.............................................
+
+to check the traffic on the switch - 
+
+$ iftop-n
+
+........................................................
+
+capture packets - 
+
+1. first install tcpdump -> $ sudo apt-get install tcpdump
+
+2. different options to capture the packets- 
+
+Capture Packets from source IP -> $ tcpdump -i eth0 src 192.168.0.2
+Capture Packets from destination IP -> $ tcpdump -i eth0 dst 50.116.66.139
+Capture Packet from Specific Port -> $ tcpdump -i eth0 port 22
+Capture only TCP Packets. -> $ tcpdump -i eth0 tcp
+Capture IP address Packets -> $ tcpdump -n -i eth0
+Read Captured Packets File ->  $ tcpdump -r 0001.pcap
+Capture and Save Packets in a File -> $ tcpdump -w 0001.pcap -i eth0
+tcpdump -w 0001.pcap -i eth0 -> $ tcpdump -XX -i eth0
+Display Available Interfaces -> $ tcpdump -D
+Print Captured Packets in ASCII -> $ tcpdump -A -i eth0 // option -A displays the package in ASCII format.
+Capture Only N Number of Packets -> $ tcpdump -c 5 -i eth0 // using -c option, you can capture specified number of packets. The below example will only 
+															capture 6 packets.
+Capture Packets from Specific Interface -> $ tcpdump -i eth0
+
+................................................................
+
+editing a file in nano editor - 
+
+ctrl+ o+ enter //dont forget enter. - save
+ctrl + x+ enter //exit terminal
+
+................................................................
+
+editing a file in vi editor - 
+
+:wq + enter - save and quit
+:x - save and quit
+:w! - quit without saving
+
+...........................................................
+
+netopeer client 
+
+$ netopeer-cli
+ netconf> connect --login root 10.162.96.101 // if of the switch.
+
+ netconf> user-rpc
+
+ // issues faced here. I copy pasted the msgs from shrikanths thesis. BUt the "-" was in a different format so it wasnt ruuning. so check this before running. 
+ // ALso the editor sucked big time so i changed the editor to nano and used it. 
+ netconf> editor nano  // this sets the editor of netopeer to nano. 
+
+ if you want to know all the options then use help. it lists down all the options and you can choose. 
+ netconf> help
+
+.............................................................
+
+make list of how to install all softwares need. - all steps in details and every error encountered. 
+
+...........................................................
+
+You can access files when is root when u are logged in through your username. Use sudo -s to be a super user always. no need to use sudo all the times. 
+
+..........................................................
+
+
+

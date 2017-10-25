@@ -1,0 +1,61 @@
+This link helped - 
+
+https://www.turnkeylinux.org/forum/support/20091110/ntp-time-synchronization-failed-sh-ntpdate-not-found
+ installed ntp and ntpdate on both switch and controller
+
+switch - takes from server i.e controller
+controller - ntp server
+
+1. on controller laptop / patricks laptop -
+
+install ntp and ntpdate -
+
+$ ntpq -p
+
+// its listed a lot of servers and their ip...
+selected the first one as it was ntp, you can check the name to find it out.  - 
+
+// its in the mail check and append. 
+
+
+2. on switch side - 
+
+mamtha@localhost:~$ sudo ntpdate 10.162.96.109 // to set to the ip. This ip is the ntp server ip. 
+[sudo] password for mamtha: 
+23 Oct 20:36:10 ntpdate[2161]: no server suitable for synchronization found
+mamtha@localhost:~$ date
+Mon Oct 23 20:36:16 CEST 2017
+mamtha@localhost:~$ sudo ntpdate 213.136.0.252
+23 Oct 20:41:42 ntpdate[2164]: step time server 213.136.0.252 offset 2.969603 sec
+mamtha@localhost:~$ date
+Mon Oct 23 20:41:53 CEST 2017
+
+
+// now the time was sycning between them. :)
+
+.......................................................................................
+after shifting the switches to the server room, all config done was gone. So i set the time to a server i found online. 
+STeps to do that -
+
+https://www.howtogeek.com/tips/how-to-sync-your-linux-server-time-with-network-time-servers-ntp/
+
+1. sudo apt-get install ntp
+
+2. vi /etc/ntp.conf
+
+3. You’ll find a lot of lines in there, but the important ones are the server lines. You can get a list of server addresses at www.pool.ntp.org, find the preferred ones for your area, and then add them to the file. For my purposes, that meant:
+
+server 0.north-america.pool.ntp.org
+server 1.north-america.pool.ntp.org
+server 2.north-america.pool.ntp.org
+server 3.north-america.pool.ntp.org
+
+4. Then you’ll need to restart or start the NTPD service:
+
+/etc/init.d/ntpd restart       //i dint do this but it still worked. 
+
+5. /usr/sbin/ntpdate pool.ntp.org   // this only works for root. not to any sub user. 
+
+..............................................................................................................
+
+

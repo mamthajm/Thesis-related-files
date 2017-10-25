@@ -1,0 +1,80 @@
+rpc msgs to be set through netopeer cli- 
+
+$netopeer-cli
+	netconf> connect --login root 10.162.96.101
+ //connected successfully message. It wont get connected it netconf server is not running on the switch. 
+	netconf> user-rpc
+//open editor - copy paste these - one by one. not all at once. 
+// editor sucked big time- was not able to copy pasted - frankly annoyed me to hell. so i changed the ediot to nano and used it. 
+// ANother issue - I copy pasted the msgs from shrikanths thesis. BUt the "-" was in a different format as it was copied from latex so it wasnt ruuning. So check this before running. 
+ 	netconf> editor nano  // this sets the editor of netopeer to nano. 
+
+// if you want to know all the options then use help. it lists down all the options and you can choose. 
+ 	netconf> help
+
+FP GROUP STATUS Operation
+
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="101">
+<get_field_processor_group_status xmlns = "http://monitoring-automata.net/sdn-mon-automata">
+<fp_monitoring_group> TCAM-MONITORING-TABLE </fp_monitoring_group>
+</get_field_processor_group_status>
+</rpc>
+
+.....................................................................................
+
+CONFIGURE TCAM Threshold Operation
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<set-fp-entry-threshold xmlns = "http://monitoring-automata.net/sdn-mon-automata">
+<fp-entry-threshold>
+<total-entries-threshold>245</total-entries-threshold>
+<total-counters-count>100</total-counters-count>
+<min-free-entries-per-device>3755</min-free-entries-per-device>
+</fp-entry-threshold>
+</se-fp-entry-threshold>
+</rpc>
+
+...............................................................................
+
+MONITORING STATUS Operation
+
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="101">
+<mon_status xmlns="http://monitoring-automata.net/sdn-mon-automata">
+<mon-id>200</mon-id>
+<device-id>50</device-id>
+</mon_status>
+</rpc>
+
+.........................................................................
+
+PORT STATISTICS CLEAR Operation
+ 
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="101">
+<port_statistics_clear xmlns="http://monitoring-automata.net/sdn-mon-automata">
+<clear-port-stats>
+<port-index>2</port-index>
+</clear-port-stats>
+</port_statistics_clear>
+</rpc>
+
+..............................................................................
+
+CONFIGURE DEVICE ID Operation
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<configure-device-id xmlns="http://monitoring-automata.net/sdn-mon-automata">
+<switch-identification>10</switch-identification>
+</configure-device-id>
+</rpc>
+
+...............................................................................
+
+GET PORT STATISTICS Operation
+
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="101">
+<port_statistics xmlns="http://monitoring-automata.net/sdn-mon-automata">
+<port-statistics-get>
+<port-index>2</port-index>
+</port-statistics-get>
+</port_statistics>
+</rpc>

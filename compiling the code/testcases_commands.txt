@@ -1,0 +1,192 @@
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_1.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_2.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_3.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_4.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_6.xml running
+
+
+
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_5.xml running  --> Do not configure this if trying monitoring agent movement, SDN controller will do this.
+
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_7.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_8.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_9.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_10.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_11.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_12.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_13.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_14.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_15.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_16.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_17.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_18.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_19.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_20.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_21.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_22.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_23.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_24.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_25.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_26.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_27.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_28.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_29.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_30.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_31.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_32.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_33.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_34.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_35.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_36.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_37.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_38.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_39.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_40.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_41.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_42.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_43.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_44.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_45.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_46.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_47.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_48.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_49.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_50.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_51.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_52.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_53.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_54.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_55.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_56.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_57.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_58.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_59.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_60.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_61.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_62.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_63.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_64.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_65.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_66.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_67.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_68.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_69.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_70.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_71.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_72.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_73.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_74.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_75.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_76.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_77.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_78.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_79.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_80.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_81.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_82.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_83.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_84.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_85.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_86.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_87.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_88.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_89.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_90.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_91.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_92.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_93.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_94.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_95.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_96.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_97.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_98.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_99.xml running
+edit-config --config /home/shrikanth/TestCases/FP_MON_HELLO_100.xml running
+
+To stop a monitoring agent, execute the corresponding test-case as edit-config --config /home/shrikanth/TestCases/FP_MON_STOP_1.xml running
+To change the polling interval of a monitoring agent, edit-config --config /home/shrikanth/TestCases/sample_test_state_mon_param_change.xml running
+NOTE: the monitoring-agent ID and poll-time should be changed in the above test case file so that the poll time is changed for the desired monitoring agents.
+
+To configure the TCAM threshold, just configure the below lines into the file when user-rpc
+operation opens the file.
+
+For example:
+Type, netopeer-cli from a terminal
+then connect to a switch using connect ipaddress of the switch
+then type user-rpc
+it will open a file. copy the below content and then save the file and quit. it will perform the operation.
+
+???????????? - which content???????????
+
+similarly execute the SET FP ENTRY THRESHOLD OPERATION below on both the devices.
+This operations imposes a limit of 5 moitoring agents to be used for monitoring.
+4091 is also important, because, AS5712 provides 4096 TCAM entries.
+We expect that 4091 free entries are present if TCAM threshold is reached.
+If not, it means some other task other than the monitoring task is also using up TCAM.
+So, there are no free entries => time to free up the TCAM used up by monitoring task.
+
+so, if you configure 10 as the threshold for montioring => 4096-10 = 4086 should be the "min-free-entries-per-device"
+total-counters-count should be multiplied by 2 * TCAM threshold. In this example 10*2 = 20.
+
+<set-fp-entry-threshold xmlns="http://monitoring-automata.net/sdn-mon-automata">
+<fp-entry-threshold>
+<total-entries-threshold>5</total-entries-threshold>
+<total-counters-count>10</total-counters-count>
+<min-free-entries-per-device>4091</min-free-entries-per-device>
+</fp-entry-threshold>
+</set-fp-entry-threshold>
+
+
+Similarly, one can set the device IDs to the switches.
+NOTE: The SDN controller code expects that the AS5712 switch is assigned ID 10 and AS7712 switch is assigned with the ID 20 always.
+Also, the controller code always configures a monitoring agent with ID-5.
+So, if you are trying monitoring-agent movement scenario then make sure that the TCAM Device IDs are assigned as expected by the controller.
+and then set the TCAM threshold on both the switches.
+Finally, configure monitoring agents on the switch (through netopeer-cli) using the above commands meant to perform edit-config operation.
+The TestCases folder is also supplied with the DVD. So, change the path (from /home/shrikanth)to the folder containing test cases accordingly
+Most importantly, do not configure the monitoring agent ID 5 through netopeer-cli console as it will be configured from the SDN controller itself
+and the agent will be moved to AS7712 switch later.
+
+
+NOTE: Best way to test Agent movement scenario is as below:
+===========================================================
+1. configure device ID 10 on AS5712 and Device ID 20 on AS7712 using netopeer-cli"s user-rpc operation(NOTE: Just copy the contents present within the <rpc> element tag of the xml file, do not include the RPC tag when using netopeer-cli)
+2. Configure TCAM threshold as below using netopeer-cli.
+3. Start the SDN controller which will connect to AS5712 using the IP 10.42.0.143 already hardcoded in the program. It will also configure the monitoring agent 5 on the switch with src ip 50.0.0.5 and dest IP 20.1.1.2
+4. Now configure the other agents from the netopeer-cli as required such that TCAM threshold is exceeded.
+Observe the SDN controller"s terminal window such that the movement is reflected.
+You can also check the logs of the AS7712 switch and look for appropriate logging information.
+
+
+Open a new NETCONF connection through a new terminal netopeer-cli program
+For example to connect to AS7712: connect --login root 10.42.0.93 
+Password is onl
+
+Then execute: user-rpc operation from the netopeer-cli program.
+Copy the below configure device-id operation.
+
+<configure-device-id xmlns="http://monitoring-automata.net/sdn-mon-automata">
+<switch-identification>10</switch-identification>
+</configure-device-id>
+
+
+Open a new NETCONF connection through a new terminal netopeer-cli program
+For example to connec tto AS7712: connect --login root 10.42.0.93 
+Execute: user-rpc
+Copy the below configure device id-operation.
+
+<configure-device-id xmlns="http://monitoring-automata.net/sdn-mon-automata">
+<switch-identification>20</switch-identification>
+</configure-device-id>
+
+
+For various other custom rpc-operations, refer to the XML files present in monitoring-model folder.
+Notice that only the contents present within the RPC element tag is copied and pasted onto usr-rpc operation file opened 
+bz the netopeer-cli program.
+We need to exclude the rpc tag!!!!! This is very very important.
+For example, to get the current status of the TCAM table from netopeer-cli, copy paste the below content.
+
+<get_field_processor_group_status xmlns="http://monitoring-automata.net/sdn-mon-automata">
+<fp_monitoring_group>TCAM-MONITORING-TABLE</fp_monitoring_group>
+</get_field_processor_group_status>
+

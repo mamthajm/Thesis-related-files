@@ -1,0 +1,369 @@
+0. This version support these Accton hardware platforms: 
+- AS4600-54T (powerpc)
+- AS5710-54X (powerpc)
+- AS5712-54X (amd64)
+- AS5812-54X (amd64)
+- AS5812-54T (amd64)
+- AS6712-32X (amd64)
+- AS6812-32X (amd64)
+- AS7712-32X (amd64)
+- AS7716-32X (amd64)
+- AS4610-30/54-P/T (armel)
+
+1.use ONIE to install ONL installer (one time installation for a device which has no ONL on the device yet or you need functions that only exist in latest ONL)
+    ONIE:/ # wget http://opennetlinux.org/binaries/latest-DEB8-AMD64-installed.installer
+    ONIE:/ # sh latest-DEB8-AMD64-installed.installer 
+  For PowerPC:
+    ONIE:/ # wget http://opennetlinux.org/binaries/latest-DEB8-PPC-installed.installer
+    ONIE:/ # sh latest-DEB8-PPC-installed.installer 
+  For Armel:
+    ONIE:/ # wget http://opennetlinux.org/binaries/latest-DEB8-ARMEL-installed.installer
+    ONIE:/ # sh latest-DEB8-ARMEL-installed.installer 
+  
+  (For AMD64 or PPC, you can use latest-DEB7-xxx-installed.installer if you wand.)    
+
+  If your unit can't connect to Internet, you can download its installer file.  
+  Save it in tftp server, then use below command to install in ONIE rescue:
+  ONIE:/ # install_url tftp://192.168.1.1/latest-DEB8-xxx-installed.installer
+  (You must configure management port first, example 192.168.1.3 and TFTP server IP is 192.168.1.1)
+
+2. In ONL Linux environment, get opennsl debian package (one time activity for a device unless there is update)
+  # to /mnt/onl/data folder
+  cd /mnt/onl/data
+  # use scp to get opennsl debian package. Get amd64 version if your switch is amd64.
+  scp 192.168.1.1:/opennsl-accton_3.2.0.5+cdp+accton1.0-1_amd64.deb . 
+
+
+3.  Install opennsl debian package (one time activity after power-on)
+  dpkg -i /mnt/onl/data/opennsl-accton_3.2.0.5+cdp+accton1.0-1_amd64.deb
+
+4. Setup environment: edit configuration file if you want to change the port mode (port splitting or grouping) or port speed
+  vi /etc/accton/opennsl.conf
+
+  (Note: new examples call example_port_default_config() in util.c which configure port speed to max.   
+  So, our opennsl.conf port speed is overwritten when you use example to test.)
+5. Test: before execute examples, you must execute opennsl_setup first -- going to this link - root@localhost:/mnt/onl/data# 
+   All example files are located in /usr/bin/opennsl-accton/examples/
+   
+(change amd64 to ppc or armel, if your platform is ppc or armel)
+
+
+============== AS4600-54T =================
+AS4600-54T Port Mapping
+as4600_54t_port_mapping[front_port, logical_port] =
+{
+    {  1,  2 },
+    {  2,  1 },
+    {  3,  4 },
+    {  4,  3 },
+    {  5,  6 },
+    {  6,  5 },
+    {  7,  8 },
+    {  8,  7 },
+    {  9, 34 },
+    { 10, 33 },
+    { 11, 36 },
+    { 12, 35 },
+    { 13, 39 },
+    { 14, 38 },
+    { 15, 41 },
+    { 16, 40 },
+    { 17, 43 },
+    { 18, 42 },
+    { 19, 45 },
+    { 20, 44 },
+    { 21, 47 },
+    { 22, 46 },
+    { 23, 49 },
+    { 24, 48 },
+    { 25, 10 },
+    { 26,  9 },
+    { 27, 12 },
+    { 28, 11 },
+    { 29, 14 },
+    { 30, 13 },
+    { 31, 16 },
+    { 32, 15 },
+    { 33, 18 },
+    { 34, 17 },
+    { 35, 20 },
+    { 36, 19 },
+    { 37, 22 },
+    { 38, 21 },
+    { 39, 24 },
+    { 40, 23 },
+    { 41, 26 },
+    { 42, 25 },
+    { 43, 28 },
+    { 44, 27 },
+    { 45, 30 },
+    { 46, 29 },
+    { 47, 32 },
+    { 48, 31 },
+    { 49, 50 },
+    { 50, 51 },
+    { 51, 52 },
+    { 52, 53 },
+};
+
+
+============== AS5710-54X & AS5712-54X (AS5812-54X/54T) =================
+AS5710-54X & AS5712-54X Port Mapping:
+as5710_54x_port_mapping[front_port, logical_port] =
+{
+    {  1,   1 },
+    {  2,   2 },
+    {  3,   3 },
+    {  4,   4 },
+    {  5,   5 },
+    {  6,   6 },
+    {  7,   7 },
+    {  8,   8 },
+    {  9,   9 },
+    { 10,  10 },
+    { 11,  11 },
+    { 12,  12 },
+    { 13,  13 },
+    { 14,  14 },
+    { 15,  15 },
+    { 16,  16 },
+    { 17,  17 },
+    { 18,  18 },
+    { 19,  19 },
+    { 20,  20 },
+    { 21,  21 },
+    { 22,  22 },
+    { 23,  23 },
+    { 24,  24 },
+    { 25,  25 },
+    { 26,  26 },
+    { 27,  27 },
+    { 28,  28 },
+    { 29,  29 },
+    { 30,  30 },
+    { 31,  31 },
+    { 32,  32 },
+    { 33,  33 },
+    { 34,  34 },
+    { 35,  35 },
+    { 36,  36 },
+    { 37,  37 },
+    { 38,  38 },
+    { 39,  39 },
+    { 40,  40 },
+    { 41,  41 },
+    { 42,  42 },
+    { 43,  43 },
+    { 44,  44 },
+    { 45,  45 },
+    { 46,  46 },
+    { 47,  47 },
+    { 48,  48 },
+    { 49,  49 },
+    { 50,  53 },
+    { 51,  57 },
+    { 52,  61 },
+    { 53,  65 },
+    { 54,  69 },
+};
+ 
+============== AS6712-32X (AS6812-32X) ================= 
+AS6712-32X Port Mapping:
+as6712_32x_port_mapping[front_port, logical_port] =
+{
+    {  1,   1 },
+    {  2,   2 },
+    {  3,   3 },
+    {  4,   4 },
+    {  5,   5 },
+    {  6,   6 },
+    {  7,   7 },
+    {  8,   8 },
+    {  9,   9 },
+    { 10,  10 },
+    { 11,  11 },
+    { 12,  12 },
+    { 13,  13 },
+    { 14,  14 },
+    { 15,  15 },
+    { 16,  16 },
+    { 17,  17 },
+    { 18,  18 },
+    { 19,  19 },
+    { 20,  20 },
+    { 21,  21 },
+    { 22,  22 },
+    { 23,  23 },
+    { 24,  24 },
+    { 25,  25 },
+    { 26,  26 },
+    { 27,  27 },
+    { 28,  28 },
+    { 29,  29 },
+    { 30,  30 },
+    { 31,  31 },
+    { 32,  32 },
+};
+
+    
+============== AS7712-32X (AS7716-32X) =================
+Port mode can support 1x100g, 1x40g, 2x50g, 2x40g, 2x20g, 4x25g, 4x10g directly. 
+Here is example.
+port_mode_50=1x100g  # front port 1
+port_mode_54=1x40g   # front port 2
+port_mode_58=2x50g   # front port 3
+port_mode_62=2x40g   # front port 4
+port_mode_68=2x20g   # front port 5
+port_mode_72=4x25g   # front port 6
+port_mode_76=4x10g   # front port 7
+
+-----------------------------------------
+AS7712-32X (AS7716-32X) Port Mapping:
+as7712_32x_port_mapping[front_port, logical_port] =
+{
+    {  1,  50  },
+    {  2,  54  },
+    {  3,  58  },
+    {  4,  62  },
+    {  5,  68  },
+    {  6,  72  },
+    {  7,  76  },
+    {  8,  80  },
+    {  9,  34  },
+    { 10,  38  },
+    { 11,  42  },
+    { 12,  46  },
+    { 13,  84  },
+    { 14,  88  },
+    { 15,  92  },
+    { 16,  96  },
+    { 17,  102 },
+    { 18,  106 },
+    { 19,  110 },
+    { 20,  114 },
+    { 21,  17  },
+    { 22,  21  },
+    { 23,  25  },
+    { 24,  29  },
+    { 25,  118 },
+    { 26,  122 },
+    { 27,  126 },
+    { 28,  130 },
+    { 29,  1   },
+    { 30,  5   },
+    { 31,  9   },
+    { 32,  13  },
+};
+
+Please note, if you use OpenNSL¡¦s examples to test, 
+you need to specify 
+port number 50 for front port#1, 
+port number 54 for front port#2, 
+as you can see on the above when not breakout 
+because OpenNSL¡¦s examples take BRCM SDK¡¦s logical port as the input for port number. 
+
+# port_speed_<logic-port> =  10000 | 20000 | 25000 | 40000 | 50000| 100000
+# 
+#port_speed_50=10000 # front port 1 => breakout 4 ports : lane 0, breakout 2 ports : lane 0
+#port_speed_51=10000 # front port 1 => breakout 4 ports : lane 1
+#port_speed_52=10000 # front port 1 => breakout 4 ports : lane 2, breakout 2 ports : lane 2
+#port_speed_53=10000 # front port 1 => breakout 4 ports : lane 3
+(Note: AS7712-32X do not support port speed 1G) 
+
+As you can see from the above, when breakout into four ports, ports 50~53 are used for front port#1 breakout.
+When breakout into two ports, port 50 and 52 will be used for front port#1 breakout.
+ 
+============== AS4610-30/54-P/T =================
+AS4610-30P/T Port Mapping:
+as4610_30_port_mapping[front_port, logical_port] =
+{
+    {  1,  2 },
+    {  2,  1 },
+    {  3,  3 },
+    {  4,  4 },
+    {  5,  6 },
+    {  6,  5 },
+    {  7,  7 },
+    {  8,  8 },
+    {  9,  10 },
+    { 10,   9 },
+    { 11,  11 },
+    { 12,  12 },
+    { 13,  14 },
+    { 14,  13 },
+    { 15,  15 },
+    { 16,  16 },
+    { 17,  18 },
+    { 18,  17 },
+    { 19,  19 },
+    { 20,  20 },
+    { 21,  22 },
+    { 22,  21 },
+    { 23,  23 },
+    { 24,  24 },
+    { 25,  42 },
+    { 26,  43 },
+    { 27,  44 },
+    { 28,  45 },
+    { 29,  46 },
+    { 30,  50 },		
+};
+
+AS4610-54P/T Port Mapping:
+as4610_54_port_mapping[front_port, logical_port] =	
+{
+    {  1, 26 },
+    {  2, 25 },
+    {  3, 27 },
+    {  4, 28 },
+    {  5, 30 },
+    {  6, 29 },
+    {  7, 31 },
+    {  8, 32 },
+    {  9, 34 },
+    { 10, 33 },
+    { 11, 35 },
+    { 12, 36 },
+    { 13, 38 },
+    { 14, 37 },
+    { 15, 39 },
+    { 16, 40 },
+    { 17, 42 },
+    { 18, 41 },
+    { 19, 43 },
+    { 20, 44 },
+    { 21, 46 },
+    { 22, 45 },
+    { 23, 47 },
+    { 24, 48 },
+    { 25,  2 },
+    { 26,  1 },
+    { 27,  3 },
+    { 28,  4 },
+    { 29,  6 },
+    { 30,  5 },
+    { 31,  7 },
+    { 32,  8 },
+    { 33, 10 },
+    { 34,  9 },
+    { 35, 11 },
+    { 36, 12 },
+    { 37, 14 },
+    { 38, 13 },
+    { 39, 15 },
+    { 40, 16 },
+    { 41, 18 },
+    { 42, 17 },
+    { 43, 19 },
+    { 44, 20 },
+    { 45, 22 },
+    { 46, 21 },
+    { 47, 23 },
+    { 48, 24 },
+    { 49, 50 },
+    { 50, 51 },
+    { 51, 52 },
+    { 52, 53 },
+    { 53, 54 },
+    { 54, 55 },
+};

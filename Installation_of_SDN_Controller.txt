@@ -1,0 +1,24 @@
+Requires ncclient program supplied with the DVD as well as present in the code repository at https://shrikanthmd1986@bitbucket.org/shrikanthmd1986/ncclient.git
+
+just goto the folder that contains setup.py, in the DVD goto -> Controller-Code/ncclient
+execute sudo python setup.py install
+
+BINGO!!! ncclient is installed.
+
+
+It is expected that all the dependencies are installed for RYU Controller following the link: 
+To install RYU SDN controller,
+Goto the path Controller-Code/RYU/ryu-4.10 and execute 
+
+sudo python setup.py install
+
+To run the RYU Controller monitoring application, run the below command
+
+
+ryu-manager /media/shrikanth/OPENNSL/Final-Submission/Controller-Code/RYU/ryu-4.10/ryu/app/monitoring_conf/monitoring_application.py
+
+
+The above command will run the application, installs a monitoring agent with ID 5 and listens to the switch for notifications.
+It handles MON_SWITCH notifications at the moment and ignores all other notifications.
+
+NOTE: /media/shrikanth/OPENNSL/Final-Submission/ should be replaced bz which ever path you copy the Controller-Code/ folder to.

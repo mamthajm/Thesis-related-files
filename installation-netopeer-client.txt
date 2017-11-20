@@ -1,0 +1,13 @@
+ 2003  cd netopeer/
+ 2004  ls
+ 2005  cd cli/
+ 2006  ls
+ 2007  ./configure
+ 2008  sudo make install
+ 2009  netopeer-cli 
+
+
+Just follow the steps as above from the source code folder present with the DVD.
+NOTE: DO not include the number series, the steps are copied from the Linux history command. Therefore the numbers are present.
+
+

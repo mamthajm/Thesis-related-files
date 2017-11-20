@@ -189,6 +189,10 @@ git commit -m "first commit"
 git remote add origin https://github.com/mamthajm/ryu-controller.git
 git push origin master
 
+if git already linked then it gives an error if you try to push it to another repo. 
+so set the url to ur current repo 
+git remote set-url origin  https://github.com/mamthajm/RYU.git
+git push origin master
 ......................................................................
 
 

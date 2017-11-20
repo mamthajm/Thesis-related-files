@@ -179,6 +179,16 @@ make list of how to install all softwares need. - all steps in details and every
 You can access files when is root when u are logged in through your username. Use sudo -s to be a super user always. no need to use sudo all the times. 
 
 ..........................................................
+Git hub - 
 
+Go to the respective folder you want to push
+
+git init
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/mamthajm/ryu-controller.git
+git push origin master
+
+......................................................................
 
 

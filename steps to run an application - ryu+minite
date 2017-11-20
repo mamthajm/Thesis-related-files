@@ -1,0 +1,28 @@
+I took the following step.
+
+1.  run mininet
+        $ sudo mn --topo single,2 --mac --switch ovsk --controller remote -x
+
+2. set OpenFlow version to s1
+      s1> ovs-vsctl set Bridge s1 protocols=OpenFlow13
+
+3. run application
+    c0> ryu-manager ryu/app/simple_switch_13.py ryu/app/ofctl_rest.py
+
+4. send ping
+     mininet> h1 ping h2
+
+5. get flow stats
+        c0> curl -X GET http://localhost:8080/stats/flow/1
+        (I got "OUTPUT:CONTROLLER", "OUTPUT:1", "OUTPUT:2")
+
+6. clear flows
+        c0> curl -X DELETE http://localhost:8080/stats/flowentry/clear/1
+
+7. send ping again
+     mininet> h1 ping h2
+            (the ping is not reachable at this time)
+
+8. get flow stats
+        c0> curl -X GET http://localhost:8080/stats/flow/1
+        (I got no flows)

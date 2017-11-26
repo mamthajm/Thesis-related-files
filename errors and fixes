@@ -20,6 +20,14 @@ Run 'dpkg-reconfigure tzdata' if you wish to change it.
 .........................
 https://askubuntu.com/questions/334436/unable-to-locate-ntpd-package
 
+mm is the month; valid values are 01 through 12.
+dd is the date; valid values are 01 through 31.
+HH is the hour; valid values are 00 through 23.
+MM is minutes; valid values are 00 through 59.
+yy is the year; valid values are 00 through 99 (values greater than 69 are interpreted as 1970 through 1999, and values less than 70 are interpreted as 2000-2069).
+
+1031131317
+
 
 .................................
 
@@ -179,6 +187,63 @@ make list of how to install all softwares need. - all steps in details and every
 You can access files when is root when u are logged in through your username. Use sudo -s to be a super user always. no need to use sudo all the times. 
 
 ..........................................................
+
+ryu-manager --verbose ~/ryu/ryu/app/monitoring_conf/monitoring_application.py
+
+ryu-manager /home/dsp/Documents/installMA/Controller-Code/RYU/ryu-4.10/ryu/app/monitoring_conf/monitoring_application.py
+
+
+edit-config --config /home/dsp/Documents/installMA/TestCases/FP_MON_HELLO_2.xml running
+
+..........................................................................
+
+clean build - 
+
+make clean
+
+................................................................................
+
+The root directory itself is represented by a single slash ("/").
+To change into the root directory, making it our working directory, we would use the command:
+
+cd /
+.........................................................................
+
+scp root@192.168.0.105:/var/log/monitor-application.log /home/mamtha/Desktop/HHH
+
+
+...........................................................
+
+$ top //command in switch console - packet in and out data i guess
+
+............................................................
+
+he asked to delete /var/lib/libnetconf/streams/NETCONF.events file - check what is the se
+
+......................................................................
+
+ps -eaf | grep monitor*
+
+..................................................
+
+
+to check if opennsl is installed on the SWITCH or not. 
+
+root@localhost:/# ldconfig -p | grep opennsl
+	libopennsl.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libopennsl.so.1
+	libopennsl.so.1 (libc6,x86-64) => /usr/lib/libopennsl.so.1
+	libopennsl.so (libc6,x86-64) => /usr/lib/libopennsl.so
+
+.............................................................................
+/home/mamtha/Desktop/Thesis_Patrick/patrick/Monitoring_Application/model
+
+.........................................................................
+
+//after you reboot the switch you ahve to setup the opennsl again - 
+Test: before execute examples, you must execute opennsl_setup first -- going to this link - root@localhost:/mnt/onl/data# 
+   All example files are located in /usr/bin/opennsl-accton/examples/
+   
+.....................................................................
 Git hub - 
 
 Go to the respective folder you want to push

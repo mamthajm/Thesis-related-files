@@ -1,0 +1,196 @@
+
+#Install ONL OS on your switch - 
+
+1. reboot the switch.
+2. Press a key to system setup or something - dont do anything. 
+3. Again it asks to press a key to enter setup - press now. 
+4. If no OS - it enters ONIE directly. ELse it gives options 1.ONL (or any other OS Installed) 2. ONIE
+5. To install a new OS, select ONIE option. 
+
+THrough USB stick - 
+1. Copy the installer file into USB drive. Connect it to the switch (NOT PC)
+2. $mkdir /mnt/media - make this new directory to mount your installer file and install.
+3. $mount /dev/sdb /mnt/media - mount the device. SOmetimes it might be other than sdb, like sdb1 ..etc. SO check it. 
+   to check you can use $sudo fdisk -l  //This lists all the devices and you can see which is yours. 
+4. $onie-nos-install /mnt/media/installer_file_name
+5. This will install the OS and automaticall reboot the system. IN the menu it will show 1.ONL 2.ONIE
+
+THrough link - internet-
+1.use ONIE to install ONL installer (one time installation for a device which has no ONL on the device yet or you need functions that only exist in latest ONL)
+    ONIE:/ # wget http://opennetlinux.org/binaries/latest-DEB8-AMD64-installed.installer
+    ONIE:/ # sh latest-DEB8-AMD64-installed.installer 
+  For PowerPC:
+    ONIE:/ # wget http://opennetlinux.org/binaries/latest-DEB8-PPC-installed.installer
+    ONIE:/ # sh latest-DEB8-PPC-installed.installer 
+  For Armel:
+    ONIE:/ # wget http://opennetlinux.org/binaries/latest-DEB8-ARMEL-installed.installer
+    ONIE:/ # sh latest-DEB8-ARMEL-installed.installer 
+  
+  (For AMD64 or PPC, you can use latest-DEB7-xxx-installed.installer if you wand.)    
+
+  If your unit can't connect to Internet, you can download its installer file.  
+  Save it in tftp server, then use below command to install in ONIE rescue:
+  ONIE:/ # install_url tftp://192.168.1.1/latest-DEB8-xxx-installed.installer
+  (You must configure management port first, example 192.168.1.3 and TFTP server IP is 192.168.1.1)
+
+....................................................................................................
+After installing ONL - internet was not working. 
+
+1. sources.list file was missing from /etc/apt folder. ITs a file with default servers to download softwares from. 
+So created it with default values - 
+deb http://httpredir.debian.org/debian jessie main
+#deb-src http://httpredir.debian.org/debian jessie main
+
+deb http://httpredir.debian.org/debian jessie-updates main
+#deb-src http://httpredir.debian.org/debian jessie-updates main
+
+deb http://security.debian.org/ jessie/updates main
+#deb-src http://security.debian.org/ jessie/updates main
+..................
+This is not defaut - it was added by me from some website. 
+deb http://ftp.us.debian.org/debian/ jessie main contrib non-free
+
+There should be a copy (of your distribution) in here:
+ /usr/share/doc/apt/examples/sources.list   --- but this file is also not there. 
+
+2. something was also listed related to resol.conf file from /etc/resolv.conf - it was empty for us. But it should be. 
+   nameserver <ip addrss>  -- this should be there. 
+
+..........................................................................................................
+
+Installing openNSL - on switch
+
+1. copy opennsl-accton_3.2.0.5+cdp+accton1.0-1_amd64.deb file to mnt/onl/data folder on the switch. - same file works for both switches. 
+   $ scp /home/mamtha/Downloads/opennsl-accton_3.2.0.5+cdp+accton1.0-1_amd64.deb  root@192.168.0.106:/mnt/onl/data
+2. Install opennsl debian package (one time activity after power-on)
+   $ dpkg -i /mnt/onl/data/opennsl-accton_3.2.0.5+cdp+accton1.0-1_amd64.deb
+3. run $opensl_setup
+   you will get something like this - linux-kernel-bde installed.
+   Sometimes you dont get anything, execute $opensl_setup again to get the message. 
+
+....................................................................................................
+Openvswitch - https://github.com/openvswitch/of-config/blob/master/INSTALL.md - on switch
+DOwnload from here - http://openvswitch.org/download/
+
+// requires a lot of dependencies - install them all. Check the link. It has everything. 
+
+1. copy the file into switch - mnt/onl/data/libraries folder. If libraries folder not there then create it. 
+   scp /home/mamtha/Downloads/openvswitch-2.8.1.tar.gz  root@192.168.0.106:/mnt/onl/libraries
+2. You have to specify the path in the makefile.am of the monitor-automata-v2 file. 
+
+.....................................................................................................
+Install Libnetconf - on switch
+
+git clone https://github.com/cesnet/libnetconf
+cd libnetconf
+./configure
+make
+sudo make install
+
+P.S:  If you face “configure: error: Missing libssh (>=0.6.4)” error during configure 
+.........................................................................................................
+Install Libssh - on switch and also PC
+If system is not supporting libssh version >=0.6.4, we have to install it from source code
+
+Prerequisites :
+
+Install following packages :
+sudo apt-get install libtool libtool-ltdl-devel libxml2-devel libxslt-devel libxslt-python libcurl-devel
+
+wget https://red.libssh.org/attachments/download/195/libssh-0.7.3.tar.xz
+unxz libssh-0.7.3.tar.xz
+tar -xvf libssh-0.7.3.tar
+cd libssh-0.7.3/
+mkdir build
+cd build/
+cmake ..
+make
+make install   
+
+............................................................................................................
+Pyang installation - on switch and PC
+
+Prerequisites - 
+sudo apt-get install python-setuptools
+
+git clone https://github.com/mbj4668/pyang
+cd pyang
+sudo python setup.py install
+
+...........................................................................................................
+install czmq - on switch
+
+echo "deb http://download.opensuse.org/repositories/network:/messaging:/zeromq:/release-stable/Debian_9.0/ ./" 
+>> /etc/apt/sources.list
+wget https://download.opensuse.org/repositories/network:/messaging:/zeromq:/release-stable/Debian_9.0/Release.key -O- | sudo apt-key add
+apt-get install libczmq-dev
+
+git clone git://github.com/zeromq/czmq.git
+cd czmq
+sh autogen.sh
+./configure
+make all
+sudo make install
+sudo ldconfig
+
+.................................................................................................................
+Netopeer Installation - ON your PC - Need this to connect to the switch. 
+
+https://anukulverma.wordpress.com/2016/03/27/netopeer-cli-installation-and-configuration/
+
+# Install required software
+sudo apt-get update
+sudo apt-get install -y git libxml2 libxml2-dev libxslt-dev libssh2-1-dev libcurl4-gnutls-dev libdbus-1-dev doxygen libevent-dev libreadline-dev libncurses-dev libxml++2.6-dev libtool python-libxml2 openssh-server xsltproc cmake build-essential libssl-dev libtool-bin wget python-setuptools vim
+sudo apt-get clean
+sudo apt-get purge
+
+# Install libssh >= 0.6.4
+
+wget https://git.libssh.org/projects/libssh.git/snapshot/libssh-0.6.4.tar.gz
+tar xvfz libssh-0.6.4.tar.gz
+rm -rf libssh-0.6.4.tar.gz
+cd libssh-0.6.4/build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Debug ..
+make && make install
+
+# Install pyang
+
+Prerequisites - 
+sudo apt-get install python-setuptools
+
+git clone https://github.com/mbj4668/pyang
+cd pyang
+sudo python setup.py install
+
+# Install libnetconf and lnctool
+
+git clone https://github.com/cesnet/libnetconf
+cd libnetconf
+./configure
+make
+sudo make install
+[libnetconf] # cp dev-tools/lnctool/lnctool /usr/local/bin/
+P.S:  If you face “configure: error: Missing libssh (>=0.6.4)” error during configure 
+
+# Install netopeer (cli)
+
+git clone https://github.com/CESNET/netopeer.git
+cd netopeer/server/
+./configure –disable-dbus
+make && make install
+cd ../cli
+./configure
+make && make install
+
+# Run netopeer-cli
+
+$ netopeer-cli
+$ connect --login root 192.168.0.106
+
+................................................................................................................
+
+
+
+
+
+

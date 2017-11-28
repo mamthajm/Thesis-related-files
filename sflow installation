@@ -1,0 +1,19 @@
+# sflow installation on your PC- 
+
+1. Download the installer from thsi website - http://www.inmon.com/products/sFlowTrend.php#download
+   I download linux installer. 
+2. Copy the file to /bin folder. 
+3. make it executable - 
+   how to make a file executable - ? 
+   $ chmod +x filename
+   then you can run the file as $ ./filename
+4. IT might ask for JAVA JVM to be installer. Go to this link and download - https://www.java.com/en/download/linux_manual.jsp
+   I downloaded Linux64. 
+5. INstall this - 
+   1. Copy the download file into /usr/java - i dint have java folder so i created it. 
+   2. untar this file - tar zxvf jre-8u73-linux-x64.tar.gz
+   3. The Java files are installed in a directory called jre1.8.0_73 in the current directory. 
+      In this example, it is installed in the /usr/java/jre1.8.0_73 directory. When the installation has completed, 
+      you will see the word Done
+6. Then be in root and run the sflow file - $ sudo bin/./sFlowTrend-unix-6_6.sh
+   Its important to be in root else it wont execute. 

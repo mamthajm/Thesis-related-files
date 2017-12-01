@@ -263,5 +263,50 @@ Fixing open nsl error
 
 https://stackoverflow.com/questions/16710047/usr-bin-ld-cannot-find-lnameofthelibrary
 
+To figure out what the linker is looking for, run it in verbose mode.
+
+For example, I encountered this issue while trying to compile MySQL with ZLIB support. I was receiving an error like this during compilation:
+
+/usr/bin/ld: cannot find -lzlib
+I did some Googl'ing and kept coming across different issues of the same kind where people would say to make sure the .so file actually exists and if it doesn't, then create a symlink to the versioned file, for example, zlib.so.1.2.8. But, when I checked, zlib.so DID exist. So, I thought, surely that couldn't be the problem.
+
+I came across another post on the Internets that suggested to run make with LD_DEBUG=all:
+
+LD_DEBUG=all make
+Although I got a TON of debugging output, it wasn't actually helpful. It added more confusion than anything else. So, I was about to give up.
+
+Then, I had an epiphany. I thought to actually check the help text for the ld command:
+
+ld --help
+From that, I figured out how to run ld in verbose mode (imagine that):
+
+ld -lzlib --verbose
+This is the output I got:
+
+==================================================
+attempt to open /usr/x86_64-linux-gnu/lib64/libzlib.so failed
+attempt to open /usr/x86_64-linux-gnu/lib64/libzlib.a failed
+attempt to open /usr/local/lib64/libzlib.so failed
+attempt to open /usr/local/lib64/libzlib.a failed
+attempt to open /lib64/libzlib.so failed
+attempt to open /lib64/libzlib.a failed
+attempt to open /usr/lib64/libzlib.so failed
+attempt to open /usr/lib64/libzlib.a failed
+attempt to open /usr/x86_64-linux-gnu/lib/libzlib.so failed
+attempt to open /usr/x86_64-linux-gnu/lib/libzlib.a failed
+attempt to open /usr/local/lib/libzlib.so failed
+attempt to open /usr/local/lib/libzlib.a failed
+attempt to open /lib/libzlib.so failed
+attempt to open /lib/libzlib.a failed
+attempt to open /usr/lib/libzlib.so failed
+attempt to open /usr/lib/libzlib.a failed
+/usr/bin/ld.bfd.real: cannot find -lzlib
+Ding, ding, ding...
+
+So, to finally fix it so I could compile MySQL with my own version of ZLIB (rather than the bundled version):
+
+sudo ln -s /usr/lib/libz.so.1.2.8 /usr/lib/libzlib.so
+Voila!
+
 ...................................................................................
 

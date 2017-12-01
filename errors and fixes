@@ -259,5 +259,9 @@ so set the url to ur current repo
 git remote set-url origin  https://github.com/mamthajm/RYU.git
 git push origin master
 ......................................................................
+Fixing open nsl error
 
+https://stackoverflow.com/questions/16710047/usr-bin-ld-cannot-find-lnameofthelibrary
+
+...................................................................................
 

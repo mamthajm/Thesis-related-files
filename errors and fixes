@@ -259,6 +259,25 @@ so set the url to ur current repo
 git remote set-url origin  https://github.com/mamthajm/RYU.git
 git push origin master
 ......................................................................
+......................................................................
+
+list all installed softwares on a switch - 
+
+$ dpkg -l
+
+......................................
+
+/etc/resolv.conf file content -
+
+nameserver 208.67.222.222
+nameserver 208.67.220.220
+nameserver 192.168.0.254
+
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+
+..................................................
+
 Fixing open nsl error
 
 https://stackoverflow.com/questions/16710047/usr-bin-ld-cannot-find-lnameofthelibrary

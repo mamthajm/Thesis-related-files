@@ -309,4 +309,67 @@ sudo ln -s /usr/lib/libz.so.1.2.8 /usr/lib/libzlib.so
 Voila!
 
 ...................................................................................
+......................................................................
+1. how to make a file executable - 
+
+$ chmod +x filename
+
+then you can run the file as $ ./filename
+
+........................................................................................................
+
+to check the installed software - 
+
+sudo apt list --installed | grep czmq
+
+..................................................................................
+sudo make error - 
+
+root@localhost:/Monitor-automata-v2# sudo make
+make  all-recursive
+make[1]: Entering directory '/Monitor-automata-v2'
+Making all in src
+make[2]: Entering directory '/Monitor-automata-v2/src'
+gcc -std=gnu99 -I../src -Wall -O3   -I/usr/include/libxml2 -I../src/include -Wall -O3 
+-I/mnt/onl/data/libraries/openvswitch-2.8.1/lib/ 
+-I/mnt/onl/data/libraries/openvswitch-2.8.1/include/ 
+-I/mnt/onl/data/libraries/openvswitch-2.8.1/include/openvswitch/ -g -O2   
+-o Monitor-automata-v2 monitor-automata.o util.o monitoring_utilities.o l3-interface-config.o vector.o lists.o -lzmq 
+    -lczmq -lpthread -lxml2 -lopenvswitch -lssl -lcrypto -latomic -lrt -lm -lzlog -lopennsl 
+/usr/bin/ld: cannot find -lopennsl
+collect2: error: ld returned 1 exit status
+Makefile:332: recipe for target 'Monitor-automata-v2' failed
+make[2]: *** [Monitor-automata-v2] Error 1
+make[2]: Leaving directory '/Monitor-automata-v2/src'
+Makefile:349: recipe for target 'all-recursive' failed
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory '/Monitor-automata-v2'
+Makefile:289: recipe for target 'all' failed
+make: *** [all] Error 2
+
+
+
+..................................................
+
+ofc-server : command not found - 
+- not installed OFCONFIG properly. 
+- if you ahve installed from git then run ./boot.sh first to get the configure file. 
+- in ./configure step - do this - add path to ovs
+root@localhost:/OFCONFIG/Mon-model/server-src# ./configure --with-ovs-secdir=/root/openvswitch-2.8.1 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/
+
+-- not getting error - 
+ofc-server[10514]: Some message received
+ofc-server[10514]: Unsupported DBus message type received.
+ofc-server[10514]: Some message received
+ofc-server[10514]: Unsupported DBus message type received.
+
+- to fis this add --disable-dbus option while configuring. 
+./configure --disable-dbus --with-ovs-srcdir=/root/openvswitch-2.3.1 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/ 
+sudo make
+sudo make install
+ofc-server -v 3 -f 
+
+------ works now  :)
+
+........................................................
 

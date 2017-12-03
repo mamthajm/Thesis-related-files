@@ -327,6 +327,7 @@ So, to finally fix it so I could compile MySQL with my own version of ZLIB (rath
 sudo ln -s /usr/lib/libz.so.1.2.8 /usr/lib/libzlib.so
 Voila!
 
+our fix - sudo ln -s /usr/lib/x86_64-linux-gnu/libopennsl.so.1 /usr/lib/libopennsl.so
 ...................................................................................
 ......................................................................
 1. how to make a file executable - 

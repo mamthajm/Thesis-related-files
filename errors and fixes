@@ -85,11 +85,25 @@ $ rm -rf monitor-application.*
 
 copying from one place to another 
 
+copying from one place to another 
+
 from switch to switch -> 
 $ cp -R src destn (destination can just be "." - without quotes, it means current directoty.)
 
 from switch to local machine -> 
-$ scp src_path_from_pc username@host:/home/..  (username - root/mamtha, /home/.. is the destn path, host is the ip addres)
+$ scp src_path_from_pc username@host:/home/..  (username - root or mamtha, /home/.. is the destn path, host is the ip addres)
+scp /home/mamtha/Downloads/Monitor-automata-v2.zip root@192.168.0.105:/    //from ur desktop terminal
+
+scp /home/mamtha/Downloads/monitor-automata.c root@192.168.0.105:/   -------- local machine to switch
+
+
+scp /home/mamtha/Desktop/Thesis_Patrick/patrick/Monitoring_Application.tar.gz root@192.168.0.106:/ 
+
+tar -xzvf file.tar.gz
+
+scp /home/mamtha/Desktop/CD/zips/RequiredSoftwareson_Switch.tar.gz root@192.168.0.106:/ 
+
+scp /home/mamtha/Desktop/OFCONFIG.tar.gz root@192.168.0.105:/ 
 
 ...........................................
 
@@ -123,7 +137,7 @@ $ tail -f /var/log/monitor-application.log
 
 to check the traffic on the switch - 
 
-$ iftop-n
+$ sudo iftop-n
 
 ........................................................
 
@@ -392,4 +406,80 @@ ofc-server -v 3 -f
 ------ works now  :)
 
 ........................................................
+
+........................................................
+
+ntpdate pool.ntp.org
+31 Aug 12:31:59 ntpdate[3108]: the NTP socket is in use, exiting
+
+https://superuser.com/questions/639202/updating-time-ntpdate3108-the-ntp-socket-is-in-use-exiting/639206
+
+It's in use because the ntp service is probably running. You did not mention which Linux 
+you are using so this assumes you have service installed (that you are running a System V system):
+    $ sudo ntpdate pool.ntp.org
+    31 Aug 19:05:55 ntpdate[8911]: the NTP socket is in use, exiting
+    $ sudo service ntp stop
+    [ ok ] Stopping NTP server: ntpd.
+    $ sudo ntpdate pool.ntp.org
+    31 Aug 19:07:11 ntpdate[10355]: adjust time server 46.29.176.115 offset -0.002893 sec
+    $ sudo service ntp start
+
+If you want to execute ntpdate with the ntp daemon already up and running, use the following command:
+    # ntpdate -u pool.ntp.org
+and it will use a different port.
+
+............................................
+When I try to run hwclock and date commands from the terminal they display different results:
+time was correct on hardware clock but not on software clock - 
+
+hardware clock - sudo hwclock
+software clock - date
+
+Another method would be to use either hwclock -w or hwclock --systohc to sync the hardware clock to the software clock.
+If you want to sync your software clock to your hardware clock then you would use hwclock -s or hwclock --hwtosys. 
+For more information on this command read man hwclock.
+
+For me - hwclock -s worked!!!!!!!!!!
+............................................................
+
+for knowing the status of the netconf session - netopeer-cli - 
+
+netconf> status
+
+...................................................................
+
+VPN connection
+
+1. install 
+   sudo apt install openvpn network-manager-openvpn network-manager-openvpn-gnome network-manager-pptp network-manager-vpnc  
+
+   sudo service network-manager restart
+
+1. go to edit connections - add
+2. select -> vpn - import saved vpn 
+3. select .ovpn file and it will automatically load all the files
+4. Go to /etc/ssh/ssh_config and copy paste all the ip address and paths and id and passwords. 
+
+In case you get any errors - 
+
+errors - 
+
+Log is written to /var/log/syslog.
+Open gnome-terminal and do sudo tail -f /var/log/syslog
+This will follow the file (prints to terminal new log messages).
+Now try to connect to the vpn, the messages then will start showing in the terminal.
+When you are done following the log just click Ctrl+c to quit tail.
+
+
+//check if the contents of the crt and key are empty. It was empty for me so it was not working. 
+
+...............................................................................................................................
+
+
+find a file in linux - 
+
+$ find . -name db.sock
+
+//. represents current and sb directories. 
+.......................................................
 

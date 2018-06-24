@@ -105,6 +105,11 @@ scp /home/mamtha/Desktop/CD/zips/RequiredSoftwareson_Switch.tar.gz root@192.168.
 
 scp /home/mamtha/Desktop/OFCONFIG.tar.gz root@192.168.0.105:/ 
 
+from local machine to switch -
+$ scp Downloads/mu.c root@10.167.6.52:/Monitor-automata-v2
+  root@10.167.6.52's password:
+
+
 ...........................................
 
 find ip of a switch. Connect to a switch by three ways. 
